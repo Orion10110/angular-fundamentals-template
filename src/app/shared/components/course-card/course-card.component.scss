@@ -30,5 +30,15 @@
     &-text {
       margin-top: 16px;
     }
+
+    &-actions {
+      display: flex;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin-left: 10px;
+
   }
 }

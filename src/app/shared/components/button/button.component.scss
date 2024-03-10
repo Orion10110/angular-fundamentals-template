@@ -15,7 +15,32 @@
         background: #016486;
     }
 
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        background: #016486;
+    }
+
     &__single-icon {
         padding: 13px;
+    }
+
+    &__form {
+        max-width: 286px;
+    }
+
+    &__icon {
+        width: 44.5px;
+        height: 44.5px;
+        padding: 0;
+        color: #016486;
+        background: none;
+    
+        &:hover {
+          background: none;
+          color: #b5b5b5;
+        }
     }
 }

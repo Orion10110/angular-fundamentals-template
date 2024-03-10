@@ -7,4 +7,7 @@ import { Validator } from "@angular/forms";
 })
 export class EmailValidatorDirective implements Validator {
     // Add your code here
+    validate () {
+        return null
+    }
 }

@@ -1,4 +1,10 @@
-<div class="app-button">
+<div 
+  class="app-button"  
+  [ngClass]="{ 
+    'app-button__form': !iconName, 
+    'app-button__icon': iconName 
+  }">
   <!-- Replace the text below with your code -->
-  Button
+  {{ buttonText }}
+  <fa-icon *ngIf="iconName" [icon]="iconName" />
 </div>
