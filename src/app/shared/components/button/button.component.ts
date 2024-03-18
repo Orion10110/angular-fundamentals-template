@@ -14,6 +14,12 @@ export class ButtonComponent {
   }
 
   // Use the names for the inputs `buttonText` and `iconName`.
+  @Input() type: string = "button";
   @Input() buttonText: string = "";
   @Input() iconName: IconDefinition | null = null;
+  @Output() onClick: EventEmitter<void> = new EventEmitter();
+
+  onClickHandler (e: MouseEvent) {
+    this.onClick.emit()
+  }
 }
