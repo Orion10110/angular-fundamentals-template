@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { CoursesStoreService } from '@app/services/courses-store.service';
 import { Course } from '@app/types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-info',
@@ -8,5 +10,11 @@ import { Course } from '@app/types';
 })
 export class CourseInfoComponent {
   // Use the names for the input `course`.
-  @Input() course: Course = {} as Course;
+  course$: Observable<any>;
+
+  constructor(private coursesStoreService: CoursesStoreService) {
+    // Assign observables directly from the store service
+    this.course$ = this.coursesStoreService.getCourse('66cc289e-6de9-49b2-9ca7-8b4f409d6467');
+  }
+
 }

@@ -3,6 +3,8 @@ import {
   FormArray,
   FormBuilder, FormGroup, Validators
 } from '@angular/forms';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { CoursesStoreService } from '@app/services/courses-store.service';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faAdd, faTrash, fas } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,7 +14,7 @@ import { faAdd, faTrash, fas } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./course-form.component.scss'],
 })
 export class CourseFormComponent {
-  constructor(public fb: FormBuilder, public library: FaIconLibrary) {
+  constructor(private courseStore: CoursesStoreService, public fb: FormBuilder, public library: FaIconLibrary) {
     library.addIconPacks(fas);
     this.buildForm()
   }
@@ -72,6 +74,7 @@ export class CourseFormComponent {
   onSubmit(): void {
     this.submitted = true
     console.log(this.courseForm.value);
+    this.courseStore.createCourse(this.courseForm.value)
   }
 
   cancel(): void {

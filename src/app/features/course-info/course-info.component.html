@@ -1,5 +1,5 @@
 <!-- Replace ::text:: with your code -->
-
+<ng-container *ngIf="course$ | async as course">
 <div class="title">{{ course.title }}</div>
 <div class="course-info">
   <div class="course-info__description">
@@ -17,6 +17,8 @@
 <div class="navigation-block">
   <!--Enter your code here-->
   <ng-container>
-    <app-button buttonText="Back"></app-button>
+    <app-button routerLink="../" buttonText="Back"></app-button>
   </ng-container>
 </div>
+</ng-container>
+

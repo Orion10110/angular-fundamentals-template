@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@app/auth/services/auth.service';
 import { emailValidator } from '@app/shared/utils/emailValidator';
 
 @Component({
@@ -11,7 +12,7 @@ export class RegistrationFormComponent {
   submitted = false;
   registrationForm!: FormGroup;
   // Use the names `name`, `email`, `password` for the form controls.
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.buildForm();
  }
 
@@ -26,6 +27,7 @@ export class RegistrationFormComponent {
   onSubmit(): void {
     this.submitted = true
     console.log(this.registrationForm.value);
+    this.authService.register(this.registrationForm.value)
   }
 
   get name() { return this.registrationForm?.get('name'); }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Course } from '@app/types';
 
 @Component({
@@ -14,13 +15,15 @@ export class CoursesListComponent {
   @Output() clickOnEdit: EventEmitter<void> = new EventEmitter();
   @Output() clickOnDelete: EventEmitter<void> = new EventEmitter();
 
+  constructor(private router: Router) { }
 
   onShowCurse (course: Course) {
-    console.log(course)
+    this.router.navigate(['courses', course.id])
   }
 
   onEditCourse (course: Course) {
     console.log(course)
+    this.router.navigate(['courses/edit', course.id])
   }
 
   onDeleteCourse (course: Course) {

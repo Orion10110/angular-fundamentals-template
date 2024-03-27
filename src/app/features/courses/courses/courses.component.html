@@ -1,0 +1,22 @@
+<app-search (search)="onSearch($event)"/>
+
+<div *ngIf="isLoading$ | async">Loading...</div>
+<div *ngIf="(isLoading$ | async) === false">
+
+  <ng-container *ngIf="courses$ | async as courses">
+    <app-courses-list
+    *ngIf="courses.length > 0"
+    [courses]="courses || []"
+    [editable]="(isAdmin$ | async) || false"
+    ></app-courses-list>
+    
+    <app-info
+    *ngIf="courses.length === 0"
+    title="Your List Is Empty"
+    text="Please use 'Add New Course' button to add your first course."
+    >
+    <app-button *ngIf="isAdmin$ | async" buttonText="Add New Course"></app-button>
+  </app-info>
+  <app-button *ngIf="(isAdmin$ | async) && courses.length > 0" buttonText="Add New Course" [routerLink]="['/courses/add']"></app-button>
+</ng-container>
+</div>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Course } from './types';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +11,14 @@ import { Course } from './types';
 })
 export class AppComponent {
   title = 'courses-app';
-  course = {
-    title: 'Hi',
-    description: "Small description",
-    id: '123523',
-    creationDate: '11/03/2024',
-    duration: 5,
-    authors: ['Cera', 'Artur']
-  } as Course;
+  isAuthorized$: Observable<boolean>;
+
+  constructor(private router: Router, private authService: AuthService) {
+    this.isAuthorized$ = this.authService.isAuthorized$
+  }
+
+  onLogout() {
+    this.authService.logout()
+    this.router.navigateByUrl('/login');
+  }
 }
