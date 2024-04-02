@@ -21,14 +21,14 @@ export class CoursesComponent {
     this.courses$ = this.coursesStoreService.courses$;
     this.isAdmin$ = this.userStoreService.isAdmin$;
     // Trigger fetch of courses
-    this.coursesStoreService.getAll().subscribe();
+    this.coursesStoreService.getAll();
   }
 
   onSearch(value: string) {
     if(value.length) {
       this.coursesStoreService.searchCourses(value)
     } else {
-      this.coursesStoreService.getAll().subscribe();
+      this.coursesStoreService.getAll();
     }
   }
 }
